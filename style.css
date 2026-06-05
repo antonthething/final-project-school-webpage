@@ -452,6 +452,7 @@ body::before {
 @media (max-width: 640px) {
     .wiki-article { flex-direction: column-reverse; }
     .wiki-infobox { width: 100%; }
+     .wiki-infobox { height: 100%; }
 }
 
 .char-card:nth-child(1) { animation-delay: 0.05s; }
