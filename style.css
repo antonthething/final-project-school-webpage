@@ -1,56 +1,24 @@
-html {
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
 
-*, *::before, *::after {
-    box-sizing: inherit;
-}
 
 body {
     font-family: 'Determination';
     margin: 0px;
     padding: 200px 0px 0px;
-    min-height: 100vh;
-    position: relative;
     background: linear-gradient(to bottom, #3c9ab9, #321e63);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: top center;
-    overflow-x: hidden;
+    background-position: absolute;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-image: url("wall.gif");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 0.5;
-    pointer-events: none;
-    rendering: pixelated;
-}
-
-:root {
-    --bg-card: rgba(5, 8, 22, 0.85);
-    --border: rgba(255, 255, 255, 0.2);
-    --radius: 16px;
-    --text: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.8);
-}
-
+/* Centered page logo image */
 .logo {
     position: absolute;
     top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: min(800px, 90vw);
+    width: 800px;
     height: auto;
 }
 
+/* Main subtitle styling below the logo */
 .subtitle {
     text-align: center;
     color: white;
@@ -60,6 +28,7 @@ body::before {
     scale: 1.5;
 }
 
+/* Styled text box description */
 .subtextStyle {
     text-align: center;
     color: rgb(255, 255, 255);
@@ -67,42 +36,37 @@ body::before {
     margin-top: 10px;
     text-shadow: #00000081 4px 4px 0px;
     border: #321e63;
-    border-width: 3px;
+     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
     padding: 5px;
-    background: rgba(33, 46, 100, 0.6);
-    width: min(800px, calc(100% - 20px));
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
 
-    width: 100%;
-    background: linear-gradient(to right, #050816, #0b0f2a);
-    border-bottom: 2px solid #6f5bd3;
+.header{
+        position:fixed;
+        top:0;
+      width:100%;
+      background:linear-gradient(to right,#050816,#0b0f2a);
+      border-bottom:2px solid #6f5bd3;
+      padding:18px 40px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+}   
 
-    padding: 18px 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    overflow-x: hidden;
-}
-
+/* Custom imported pixel-style font */
 @font-face {
   font-family: 'Determination';
   src: url('determination.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
+
 
 .site-name {
     color: white;
@@ -114,9 +78,9 @@ body::before {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
-    max-width: 100%;
-    min-width: 0;
+    overflow-x: auto;
 }
 
 .nav-bar a {
@@ -124,8 +88,6 @@ body::before {
     font-size: 16px;
     text-shadow: #00000081 2px 2px 0px;
     transition: 0.2s;
-    white-space: nowrap;
-    padding: 0.3rem 0.75rem;
 }
 
 .nav-bar a:hover {
@@ -136,11 +98,11 @@ body::before {
 @media (max-width: 600px) {
     .header { padding: 12px 10px; flex-direction: column; align-items: stretch; gap: 8px; }
     .nav-bar { justify-content: center; gap: 8px; }
-    .nav-bar a { flex: 1 1 45%; max-width: 45%; text-align: center; }
     .subtextStyle { width: auto; margin-left: 10px; margin-right: 10px; }
-    .logo { width: min(800px, 90vw); top: -80px; }
+    .logo { width: 60vw; left: 50%; transform: translateX(-50%); top: -80px; }
 }
 
+/* Characters section container and spacing */
 .characters-section {
     margin: 50px auto 0;
     max-width: 900px;
@@ -165,12 +127,14 @@ body::before {
     margin: 0 auto 32px;
 }
 
+/* Responsive grid layout for the character cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
     gap: 18px;
 }
 
+/* Card design and hover animation */
 .char-card {
     position: relative;
     background: rgba(5, 8, 22, 0.6);
@@ -190,6 +154,7 @@ body::before {
     border-color: #ffea00;
 }
 
+/* Portrait container inside each character card */
 .char-portrait {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -210,10 +175,24 @@ body::before {
     image-rendering: pixelated;
 }
 
+.char-card:hover .char-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent, transparent 3px,
+        rgba(255,255,255,0.04) 3px, rgba(255,255,255,0.04) 4px
+    );
+    pointer-events: none;
+}
+
+/* Text container for character details */
 .char-info {
     padding: 10px 12px 12px;
 }
 
+/* Character name */
 .char-name {
     color: white;
     font-size: 16px;
@@ -275,185 +254,6 @@ body::before {
     z-index: 3;
 }
 
-.wiki-body {
-    max-width: 900px;
-    margin: 40px auto 80px;
-    padding: 0 20px;
-}
-
-.wiki-article {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
-    transform: scale(1.06);
-    transform-origin: top center;
-}
-
-.wiki-infobox {
-    width: 220px;
-    flex-shrink: 0;
-}
-
-.wiki-section {
-    margin-bottom: 32px;
-}
-
-.infobox-portrait img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    image-rendering: pixelated;
-    display: block;
-    max-width: 220px;
-    margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-    .wiki-article { transform: none; }
-    .wiki-infobox { width: 180px; }
-    .infobox-portrait img { max-width: 180px; }
-}
-
-.infobox-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 11px;
-}
-
-.infobox-table tr + tr td {
-    border-top: 1px solid rgba(50, 30, 99, 0.5);
-}
-
-.infobox-table td {
-    padding: 5px 8px;
-    vertical-align: top;
-    line-height: 1.5;
-    
-}
-
-.infobox-table td:first-child {
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-.infobox-table td:last-child {
-    color: rgba(255,255,255,0.85);
-}
-
-.wiki-content {
-    flex: 1;
-    min-width: 0;
-    background: rgba(5, 8, 22, 0.18);
-    border: 3px solid #321e63;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 18px;
-    color: rgba(255,255,255,0.95);
-    font-size: 18px;
-    text-shadow: #00000081 2px 2px 0px;
-    font-family: 'Determination', sans-serif;
-}
-
-.wiki-content p {
-    color: rgb(255, 255, 255);
-    font-size: 13px;
-    line-height: 1.8;
-    margin: 0 0 12px;
-    text-shadow: #000 1px 1px 0;
-}
-
-.wiki-content p strong {
-    color: #ffea00;
-    text-shadow: #321e63 1px 1px 0;
-}
-
-.wiki-content .wiki-section {
-    background: transparent;
-    margin-bottom: 20px;
-    padding: 0;
-}
-
-
-.contact-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 900px);
-  margin: 0 auto 60px;
-  padding: 2rem 1rem 3rem;
-  text-align: center;
-}
-
-.contact-section h2 {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
-  font-family: 'Determination', sans-serif;
-}
-.contact-section p {
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  max-width: 660px;
-}
-.contact-form {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 540px;
-  color: var(--text);
-  font-family: 'Determination', sans-serif;
-}
-
-.contact-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-  font-weight: 600;
-}
-
-.contact-form input,
-
-.contact-form textarea {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  margin-bottom: 1.2px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 5px;
-  background: rgba(10, 10, 22, 0.07);
-  color: var(--text);
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.contact-form button {
-  display: inline-block;
-  padding: 0.9rem 1.4rem;
-  border: none;
-  border-radius: 0.85rem;
-  background: #28275f;
-  color: #050816;
-  transition: transform 0.2s ease, background 0.2s ease;
-  font-family: inherit;
-}
-
-.contact-form button:hover {
-  transform: translateY(-1px);
-  background: #ffd000;
-}
-
-@media (max-width: 640px) {
-    .wiki-article { flex-direction: column-reverse; }
-    .wiki-infobox { width: 100%; }
-}
-
 .char-card:nth-child(1) { animation-delay: 0.05s; }
 .char-card:nth-child(2) { animation-delay: 0.05s; }
 .char-card:nth-child(3) { animation-delay: 0.05s; }
@@ -470,3 +270,4 @@ body::before {
 @media (max-width: 600px) {
     .characters-section { padding: 0 12px; }
 }
+
